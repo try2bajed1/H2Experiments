@@ -1,0 +1,78 @@
+ package iot.example.h2experiments.storage.domain
+
+import org.joda.time.DateTime
+import java.beans.ConstructorProperties
+import java.math.BigDecimal
+
+data class OperationRequest constructor(val id: Long,
+                                        val accountId: Int,
+                                        val fiscalcopy:Boolean,
+                                        val webCashboxId: Int?,
+                                        val type: OperationType,
+                                        val status: String,
+                                        val kktReceiptId: Long?,
+                                        val amount: BigDecimal,
+                                        val cashAmount: BigDecimal,
+                                        val electronAmount: BigDecimal,
+                                        val prepaidAmount: BigDecimal,
+                                        val postpaidAmount: BigDecimal,
+                                        val counterOfferAmount: BigDecimal,
+                                        val serverNum:String,
+                                        val lines: List<Line> = emptyList(),
+                                        val cashierName: String?,
+                                        val email: String?,
+                                        val phoneNumber: String?,
+                                        val shouldPrint: Boolean,
+                                        val orderId: String?,
+                                        val orderNumber: String?,
+                                        val createdAt: DateTime?,
+                                        val updatedAt: DateTime?,
+                                        val archivedAt: DateTime?,
+                                        val lockedPreviously: Boolean,
+                                        val result: Result? = null,
+                                        val cashierRole:String?,
+                                        val cashierInn:String?,
+                                        val transactionAddress:String?) {
+    //Дополнительный конструктор, необходим для маппинга в JDBI
+    @ConstructorProperties("id", "account_id","fiscalcopy", "web_cashbox_id", "type", "status", "kkt_receipt_id", "amount",
+            "cash_amount", "electron_amount","prepaid_amount", "postpaid_amount","counter_offer_amount","server_num", "cashier_name", "email", "phone_number", "should_print",
+            "order_id", "order_number", "created_at", "updated_at", "archived_at", "locked_previously",
+            "cashier_role","cashier_inn","transaction_address")
+
+    constructor(id: Long,
+                accountId: Int,
+                fiscalcopy:Boolean,
+                webCashboxId: Int?,
+                type: OperationType,
+                status: String,
+                kktReceiptId: Long?,
+                amount: BigDecimal,
+                cashAmount: BigDecimal,
+                electronAmount: BigDecimal,
+                prepaidAmount: BigDecimal,
+                postpaidAmount: BigDecimal,
+                counterOfferAmount: BigDecimal,
+                serverNum:String,
+                cashierName: String?,
+                email: String?,
+                phoneNumber: String?,
+                shouldPrint: Boolean,
+                orderId: String?,
+                orderNumber: String?,
+                createdAt: DateTime?,
+                updatedAt: DateTime?,
+                archivedAt: DateTime?,
+                lockedPreviously: Boolean,
+                cashierRole:String?,
+                cashierInn:String?,
+                transactionAddress:String?) : this(id = id, accountId = accountId, fiscalcopy = fiscalcopy, webCashboxId = webCashboxId,
+            type = type, status = status, kktReceiptId = kktReceiptId, amount = amount, cashAmount = cashAmount,
+            electronAmount = electronAmount,prepaidAmount = prepaidAmount,postpaidAmount = postpaidAmount,counterOfferAmount = counterOfferAmount,  serverNum = serverNum,
+            lines = emptyList(), cashierName = cashierName, email = email,
+            phoneNumber = phoneNumber,
+            shouldPrint = shouldPrint, orderId = orderId, orderNumber = orderNumber, createdAt = createdAt,
+            updatedAt = updatedAt, archivedAt = archivedAt, lockedPreviously = lockedPreviously,
+            cashierRole = cashierRole, cashierInn = cashierInn,transactionAddress = transactionAddress
+            )
+
+}
